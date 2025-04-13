@@ -1,0 +1,5 @@
+.animated-number {
+  display: inline-block;
+  /* every digit takes up the same horizontal space, avoiding layout shifts */
+  font-variant-numeric: tabular-nums;
+}
