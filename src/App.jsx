@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  return <>Connect Four</>;
+  return <p>Connect four</p>;
 }
 
 export default App;

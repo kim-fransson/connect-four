@@ -1,0 +1,28 @@
+@import "tailwindcss/preflight.css";
+
+@font-face {
+  font-family: "Space Grotesk Variable";
+  src: url("./assets/fonts/SpaceGrotesk-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+:root {
+  --black: #000000;
+  --purple-500: #5c2dd5;
+  --purple-400: #7945ff;
+  --pink: #fd6687;
+  --yellow: #ffce67;
+  --white: #ffffff;
+}
+
+body {
+  font-family: "Space Grotesk Variable", sans-serif;
+  background: var(--purple-500);
+  color: var(--white);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
