@@ -21,3 +21,15 @@
     no-repeat;
   color: var(--white);
 }
+
+.timer__label {
+  font-weight: 700;
+  font-size: var(--font-size-heading-xs);
+  line-height: var(--line-height-heading-xs);
+}
+
+.timer__value {
+  font-weight: 700;
+  font-size: var(--font-size-heading-l);
+  line-height: var(--line-height-heading-l);
+}

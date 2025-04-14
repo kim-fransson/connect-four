@@ -65,8 +65,8 @@ export const Timer = ({ label, from, onTimerEnd, color }) => {
       variants={timerVariants}
       animate={animation}
     >
-      <span className="heading-xs">{label}</span>
-      <div className="heading-l">
+      <span className="timer__label">{label}</span>
+      <div className="timer__value">
         <AnimatedNumber value={timeLeft} padding={1} />
         {"s"}
       </div>

@@ -13,6 +13,15 @@
   --pink: #fd6687;
   --yellow: #ffce67;
   --white: #ffffff;
+
+  --font-size-heading-l: 3.5rem;
+  --line-height-heading-l: 4.375rem;
+
+  --font-size-heading-s: 1.25rem;
+  --line-height-heading-s: 1.625rem;
+
+  --font-size-heading-xs: 1rem;
+  --line-height-heading-xs: 1.25rem;
 }
 
 body {

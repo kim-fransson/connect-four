@@ -2,9 +2,10 @@
   min-width: 148px;
   position: relative;
   padding: 10px 8px 8px 8px;
-  display: inline-grid;
-  place-items: center;
-  place-content: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: var(--white);
   color: var(--black);
   border: 3px solid var(--black);
@@ -14,6 +15,12 @@
 
 .score-card__score {
   font-size: 2rem;
+  font-weight: 700;
+}
+
+.score-card__label {
+  font-size: var(--font-size-heading-xs);
+  line-height: var(--line-height-heading-xs);
   font-weight: 700;
 }
 
@@ -34,4 +41,52 @@
 
 .score-card__player > img {
   transition: scale 300ms ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .score-card {
+    min-width: 278px;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .score-card__label {
+    font-size: var(--font-size-heading-s);
+    line-height: var(--line-height-heading-s);
+  }
+  .score-card__label-yellow {
+    order: 2;
+  }
+
+  .score-card__score {
+    font-size: var(--font-size-heading-l);
+    line-height: var(--line-height-heading-l);
+  }
+  .score-card__score-yellow {
+    order: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .score-card {
+    min-width: 147px;
+    padding: 50px 8px 24px 8px;
+    gap: 4px;
+    flex-direction: column;
+  }
+
+  .score-card__player-red,
+  .score-card__player-yellow {
+    top: 0%;
+    left: 50%;
+    right: auto;
+    translate: -50% -50%;
+  }
+
+  .score-card__label-yellow {
+    order: 1;
+  }
+  .score-card__score-yellow {
+    order: 2;
+  }
 }
