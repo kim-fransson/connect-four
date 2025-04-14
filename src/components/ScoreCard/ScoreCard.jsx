@@ -18,17 +18,13 @@ export const ScoreCard = ({ label, score, color }) => {
   const anchorY = posY + elH / 2;
   let rotation = angle(docX, docY, anchorX, anchorY);
 
-  let scaleY;
+  let scaleY = 1;
+
   if (color === "yellow") {
     scaleY = rotation < -90 || rotation > 90 ? -1 : 1;
-  } else {
-    if (rotation !== 0) {
-      const newRotation = rotation + 180;
-      rotation = newRotation;
-      console.log({ rotation });
-
-      scaleY = newRotation < 270 && newRotation > 90 ? -1 : 1;
-    }
+  } else if (rotation !== 0) {
+    rotation += 180;
+    scaleY = rotation < 270 && rotation > 90 ? -1 : 1;
   }
 
   return (
@@ -43,7 +39,8 @@ export const ScoreCard = ({ label, score, color }) => {
           src={colorToPlayer[color]}
           alt=""
           style={{
-            transform: `rotate(${rotation}deg) scaleY(${scaleY})`,
+            rotate: `${rotation}deg`,
+            scale: `1 ${scaleY}`,
           }}
         />
       </div>
