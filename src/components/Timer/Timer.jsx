@@ -1,8 +1,9 @@
 import { useHarmonicIntervalFn } from "react-use";
 import { motion } from "motion/react";
-import "./Timer.css";
 import { useRef, useState } from "react";
 import { AnimatedNumber } from "../AnimatedNumber/AnimatedNumber";
+
+import "./Timer.css";
 
 const timerVariants = {
   normal: {
