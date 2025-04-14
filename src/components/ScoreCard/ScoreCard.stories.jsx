@@ -12,6 +12,7 @@ export const Player1 = {
     label: "PLAYER 1",
     score: 12,
     color: "red",
+    follow: true,
   },
 };
 
@@ -20,5 +21,6 @@ export const Player2 = {
     label: "PLAYER 2",
     score: 23,
     color: "yellow",
+    follow: true,
   },
 };

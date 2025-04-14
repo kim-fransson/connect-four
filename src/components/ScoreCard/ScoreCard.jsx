@@ -11,7 +11,7 @@ const colorToPlayer = {
   yellow: player2,
 };
 
-export const ScoreCard = ({ label, score, color }) => {
+export const ScoreCard = ({ label, score, color, follow = false }) => {
   const ref = useRef(null);
   const { docX, docY, posX, posY, elW, elH } = useMouse(ref);
   const anchorX = posX + elW / 2;
@@ -39,8 +39,8 @@ export const ScoreCard = ({ label, score, color }) => {
           src={colorToPlayer[color]}
           alt=""
           style={{
-            rotate: `${rotation}deg`,
-            scale: `1 ${scaleY}`,
+            rotate: follow && `${rotation}deg`,
+            scale: follow && `1 ${scaleY}`,
           }}
         />
       </div>
