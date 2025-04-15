@@ -1,0 +1,3 @@
+.animated-player > img {
+  transition: scale 300ms ease-in-out;
+}

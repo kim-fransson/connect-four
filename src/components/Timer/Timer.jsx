@@ -5,7 +5,7 @@ import { AnimatedNumber } from "../AnimatedNumber/AnimatedNumber";
 
 import "./Timer.css";
 
-const timerVariants = {
+const animations = {
   normal: {
     rotate: [0],
     scale: 1,
@@ -62,7 +62,7 @@ export const Timer = ({ label, from, onTimerEnd, color }) => {
       aria-live="polite"
       aria-label={timeLeft}
       className={`timer timer-${color}`}
-      variants={timerVariants}
+      variants={animations}
       animate={animation}
     >
       <span className="timer__label">{label}</span>

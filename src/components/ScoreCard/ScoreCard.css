@@ -39,10 +39,6 @@
   translate: 50% -50%;
 }
 
-.score-card__player > img {
-  transition: scale 300ms ease-in-out;
-}
-
 @media (min-width: 768px) {
   .score-card {
     min-width: 278px;

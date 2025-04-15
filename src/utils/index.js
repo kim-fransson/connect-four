@@ -3,5 +3,11 @@ export const angle = (cx, cy, ex, ey) => {
   const dx = ex - cx;
   const rad = Math.atan2(dy, dx);
   const deg = (rad * 180) / Math.PI;
-  return deg;
+  return (deg + 270) % 360; // normalize
 };
+
+export const isBetween = (val, min, max) => {
+  return val > min && val < max;
+};
+
+export const normalizeDeg = (deg) => (deg + 360) % 360;
