@@ -1,16 +1,16 @@
 import { action } from "@storybook/addon-actions";
-import { PrimaryButton } from "./PrimaryButton";
+import { PlayVSCPU } from "./PlayVSCPU";
 
 export default {
-  component: PrimaryButton,
+  component: PlayVSCPU,
   parameters: {
     layout: "centered",
+  },
+  args: {
+    onPress: action("onPress"),
   },
 };
 
 export const Default = {
-  args: {
-    onPress: action("onPress"),
-    children: "Primary Button",
-  },
+  args: {},
 };

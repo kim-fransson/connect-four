@@ -2,8 +2,80 @@
   cursor: pointer;
   outline: 0;
 }
+.base-button .center {
+  text-align: center;
+}
+.base-button .left {
+  text-align: left;
+}
 
 .base-button[data-focus-visible] {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
+}
+
+/* variants */
+.base-button-icon {
+  width: 64px;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  display: grid;
+  place-content: center;
+  padding-top: 3px;
+
+  background: var(--pink);
+  border: 3px solid var(--black);
+  box-shadow: 0px 4px 0px var(--black);
+}
+.base-button-icon > * {
+  width: 36px;
+  height: 36px;
+}
+
+.base-button-primary {
+  height: 72px;
+  padding: 0 32px;
+  border: 3px solid var(--black);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+
+  font-size: var(--font-size-heading-m);
+  line-height: var(--line-height-heading-m);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.base-button-pink {
+  background: var(--pink);
+  color: var(--white);
+}
+
+.base-button-white {
+  background: var(--white);
+  color: var(--black);
+}
+
+.base-button-yellow {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+.base-button-subtle {
+  background: var(--purple-500);
+  height: 39px;
+  min-width: 86px;
+  color: var(--white);
+  border-radius: 20px;
+  font-size: var(--font-size-heading-xs);
+  line-height: var(--line-height-heading-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
 }

@@ -1,15 +1,16 @@
-import { CheckButton } from "./CheckButton";
 import { action } from "@storybook/addon-actions";
+import { PlayVSPlayer } from "./PlayVSPlayer";
 
 export default {
-  component: CheckButton,
+  component: PlayVSPlayer,
   parameters: {
     layout: "centered",
+  },
+  args: {
+    onPress: action("onPress"),
   },
 };
 
 export const Default = {
-  args: {
-    onPress: action("onPress"),
-  },
+  args: {},
 };
