@@ -1,0 +1,9 @@
+.base-button {
+  cursor: pointer;
+  outline: 0;
+}
+
+.base-button[data-focus-visible] {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}

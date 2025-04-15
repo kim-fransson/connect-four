@@ -14,8 +14,13 @@
   --yellow: #ffce67;
   --white: #ffffff;
 
+  --focus: #2fa6ff;
+
   --font-size-heading-l: 3.5rem;
   --line-height-heading-l: 4.375rem;
+
+  --font-size-heading-m: 1.5rem;
+  --line-height-heading-m: 1.9375rem;
 
   --font-size-heading-s: 1.25rem;
   --line-height-heading-s: 1.625rem;
