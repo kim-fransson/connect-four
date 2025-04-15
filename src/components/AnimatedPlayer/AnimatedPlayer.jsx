@@ -6,9 +6,9 @@ import player1Lose from "../../assets/images/player-one-lose.svg";
 import player2Idle from "../../assets/images/player-two-win.svg";
 import player2Active from "../../assets/images/player-two.svg";
 import player2Lose from "../../assets/images/player-two-lose.svg";
-import { useMedia, useMouse } from "react-use";
+import { useMouse } from "react-use";
 import { motion } from "motion/react";
-import { angle, isBetween } from "../../utils";
+import { angle, isBetween, repeat } from "../../utils";
 import clsx from "clsx";
 
 const images = {
@@ -21,25 +21,53 @@ const images = {
   yellow: {
     idle: player2Idle,
     follow: player2Active,
-    win: player1Idle,
+    win: player2Idle,
     lose: player2Lose,
   },
 };
 
-export const AnimatedPlayer = ({
-  color,
-  follow,
-  className,
-  animation = "idle",
-}) => {
+const animationVariants = (rotation, scaleX) => ({
+  follow: {
+    rotate: rotation - 90,
+    scaleX,
+  },
+  win: {
+    y: repeat(["0", "-80px"], 4).concat(["0"]),
+    scaleX: repeat([1.1, 1], 4).concat([1.1]),
+    scaleY: repeat([(0.9, 1)], 4).concat([0.9]),
+    rotate: repeat([0, 0], 3).concat([0, 0, 180, 360]),
+
+    transition: {
+      y: {
+        duration: 0.8 * 4,
+        repeat: Infinity,
+        ease: repeat(["easeOut", "easeIn"], 4).concat(["easeOut"]),
+      },
+      scaleX: {
+        duration: 0.8 * 4,
+        repeat: Infinity,
+        ease: repeat(["easeOut", "easeIn"], 4).concat(["easeOut"]),
+      },
+      scaleY: {
+        duration: 0.8 * 4,
+        repeat: Infinity,
+        ease: repeat(["easeOut", "easeIn"], 4).concat(["easeOut"]),
+      },
+      rotate: {
+        duration: 0.8 * 4,
+        repeat: Infinity,
+        ease: repeat(["easeOut", "easeIn"], 4).concat(["easeOut"]),
+      },
+    },
+  },
+});
+
+export const AnimatedPlayer = ({ color, className, animation = "idle" }) => {
   const ref = useRef(null);
   const { docX, docY, posX, posY, elW, elH } = useMouse(ref);
-  const isMouse = useMedia("(pointer: fine)");
 
   const anchorX = posX + elW / 2;
   const anchorY = posY + elH / 2;
-
-  const shouldFollowMouse = follow && isMouse && animation === "follow";
 
   const rotation = angle(docX, docY, anchorX, anchorY);
 
@@ -47,20 +75,16 @@ export const AnimatedPlayer = ({
   const adjustedRotation = shouldFlip ? 360 - rotation : rotation;
   const scaleX = shouldFlip ? -1 : 1;
 
-  // todo: Make winning animation 'bouncy/happy'
-  // todo: Make lose animation 'looking down/unhappy/shaking its head'
-  // todo: Idle when pressing it should scale down and then jump/bounce
+  const variants = animationVariants(adjustedRotation, scaleX);
 
   return (
-    <motion.div
-      ref={ref}
-      className={clsx(className, "animated-player")}
-      animate={{
-        rotate: shouldFollowMouse ? adjustedRotation - 90 : undefined,
-        scaleX: shouldFollowMouse ? scaleX : undefined,
-      }}
-    >
-      <img src={images[color][animation]} alt="" />
-    </motion.div>
+    <div ref={ref} className={clsx(className, "animated-player")}>
+      <motion.img
+        src={images[color][animation]}
+        alt=""
+        variants={variants}
+        animate={animation}
+      />
+    </div>
   );
 };

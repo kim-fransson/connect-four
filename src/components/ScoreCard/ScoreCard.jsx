@@ -2,6 +2,8 @@ import { AnimatedPlayer } from "../AnimatedPlayer/AnimatedPlayer";
 import "./ScoreCard.css";
 
 export const ScoreCard = ({ label, score, color, follow = false }) => {
+  // const isMouse = useMedia("(pointer: fine)");
+
   return (
     <div className="score-card">
       <span className={`score-card__label score-card__label-${color}`}>
