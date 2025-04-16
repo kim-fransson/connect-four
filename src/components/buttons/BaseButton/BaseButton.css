@@ -2,11 +2,11 @@
   cursor: pointer;
   outline: 0;
 }
-.base-button .center {
-  text-align: center;
+.base-button.center {
+  justify-content: center;
 }
-.base-button .left {
-  text-align: left;
+.base-button.left {
+  justify-content: space-between;
 }
 
 .base-button[data-focus-visible] {
@@ -38,7 +38,6 @@
   border: 3px solid var(--black);
   border-radius: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 32px;
 

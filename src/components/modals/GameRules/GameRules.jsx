@@ -10,19 +10,44 @@ import { BaseButton } from "../../buttons";
 import { Check } from "lucide-react";
 
 import "./GameRules.css";
+import { motion } from "motion/react";
+import { useState } from "react";
+import { modalAnimations, overlayAnimations } from "../animations";
+
+const MotionModalOverlay = motion.create(ModalOverlay);
+const MotionModal = motion.create(Modal);
 
 export const GameRules = () => {
+  const [animation, setAnimation] = useState("unmounted");
+
+  const handleOpenChange = (isOpen) => {
+    if (isOpen) {
+      setAnimation("visible");
+    } else {
+      setAnimation("hidden");
+    }
+  };
   return (
-    <DialogTrigger>
+    <DialogTrigger onOpenChange={handleOpenChange}>
       <BaseButton color="white" variant="primary" textAlign="left">
         game rules
       </BaseButton>
-      <ModalOverlay className="game-rules__modal-overlay">
-        <Modal className="game-rules__modal">
+      <MotionModalOverlay
+        className="game-rules__modal-overlay"
+        isExiting={animation === "hidden"}
+        onAnimationComplete={(animation) => {
+          setAnimation((a) =>
+            animation === "hidden" && a === "hidden" ? "unmounted" : a
+          );
+        }}
+        variants={overlayAnimations}
+        initial="hidden"
+        exit="hidden"
+        animate={animation}
+      >
+        <MotionModal className="game-rules__modal" variants={modalAnimations}>
           <Dialog className="game-rules__dialog">
-            <Heading className="game-rules__heading" slot="title">
-              rules
-            </Heading>
+            <Heading slot="title">rules</Heading>
             <div>
               <h3>objective</h3>
               <p>
@@ -51,8 +76,8 @@ export const GameRules = () => {
               <Check />
             </BaseButton>
           </Dialog>
-        </Modal>
-      </ModalOverlay>
+        </MotionModal>
+      </MotionModalOverlay>
     </DialogTrigger>
   );
 };

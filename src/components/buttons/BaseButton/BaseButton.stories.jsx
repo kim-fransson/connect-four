@@ -6,9 +6,6 @@ export default {
   component: BaseButton,
   parameters: {
     layout: "centered",
-    backgrounds: {
-      values: [{ name: "White", value: "#FFF" }],
-    },
   },
   args: {
     onPress: action("onPress"),

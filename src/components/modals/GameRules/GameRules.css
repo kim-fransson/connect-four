@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   z-index: 100;
+  padding: 20px;
 }
 
 .game-rules__modal {
@@ -72,7 +73,7 @@
   color: var(--purple-400);
   text-transform: uppercase;
 
-  margin: 32px 0 28px 0;
+  margin: 28px 0 16px 0;
 }
 
 .game-rules__modal * button {
@@ -80,4 +81,12 @@
   bottom: 0;
   left: 50%;
   translate: -50% 50%;
+}
+
+@media (min-width: 768px) {
+  .game-rules__modal {
+    padding: 30px 32px 60px 32px;
+  }
+}
+@media (min-width: 1024px) {
 }
