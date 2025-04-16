@@ -1,0 +1,83 @@
+.game-rules__modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0 0 0 / 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.game-rules__modal {
+  position: relative;
+  box-shadow: 0px 10px 0px var(--black);
+  border-radius: 40px;
+  padding: 30px 20px 60px 20px;
+  background: var(--white);
+  color: var(--black);
+  border: 3px solid var(--black);
+  outline: none;
+  max-width: 480px;
+}
+
+.game-rules__dialog {
+  outline: none;
+}
+
+.game-rules__modal * p,
+.game-rules__modal * li {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--black), transparent 33%);
+}
+
+.game-rules__modal * li {
+  counter-increment: decimal-no-dot;
+  position: relative;
+  padding-left: 28px;
+}
+
+.game-rules__modal * li::before {
+  content: counter(decimal-no-dot);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  font-size: var(--font-size-heading-xs);
+  line-height: var(--line-height-heading-xs);
+  color: var(--black);
+}
+
+.game-rules__modal * ol {
+  list-style: none;
+  counter-reset: decimal-no-dot;
+  padding-left: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.game-rules__modal * h2 {
+  font-size: var(--font-size-heading-l);
+  line-height: var(--line-height-heading-l);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.game-rules__modal * h3 {
+  font-weight: 700;
+  font-size: var(--font-size-heading-s);
+  line-height: var(--line-height-heading-s);
+  color: var(--purple-400);
+  text-transform: uppercase;
+
+  margin: 32px 0 28px 0;
+}
+
+.game-rules__modal * button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 50%;
+}

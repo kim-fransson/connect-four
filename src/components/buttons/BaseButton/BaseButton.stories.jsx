@@ -82,7 +82,6 @@ export const TextLeft = {
     // eslint-disable-next-line no-unused-vars
     (Story) => (
       <div style={{ width: "400px", display: "grid" }}>
-        {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
         <Story />
       </div>
     ),
