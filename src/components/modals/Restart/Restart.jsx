@@ -8,16 +8,15 @@ import {
 
 import { BaseButton } from "../../buttons";
 
-import "./InGameMenu.css";
+import "./Restart.css";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { modalAnimations, overlayAnimations } from "../animations";
-import { Restart } from "../Restart/Restart";
 
 const MotionModalOverlay = motion.create(ModalOverlay);
 const MotionModal = motion.create(Modal);
 
-export const InGameMenu = () => {
+export const Restart = ({ btnVariant = "primary", btnColor = "white" }) => {
   const [animation, setAnimation] = useState("unmounted");
 
   const handleOpenChange = (isOpen) => {
@@ -29,9 +28,11 @@ export const InGameMenu = () => {
   };
   return (
     <DialogTrigger onOpenChange={handleOpenChange}>
-      <BaseButton variant="subtle">menu</BaseButton>
+      <BaseButton variant={btnVariant} color={btnColor}>
+        restart
+      </BaseButton>
       <MotionModalOverlay
-        className="in-game-menu__modal-overlay"
+        className="restart__modal-overlay"
         isExiting={animation === "hidden"}
         onAnimationComplete={(animation) => {
           setAnimation((a) =>
@@ -43,16 +44,15 @@ export const InGameMenu = () => {
         exit="hidden"
         animate={animation}
       >
-        <MotionModal className="in-game-menu__modal" variants={modalAnimations}>
-          <Dialog className="in-game-menu__dialog">
-            <Heading slot="title">pause</Heading>
-            <div className="in-game-menu__button-group">
+        <MotionModal className="restart__modal" variants={modalAnimations}>
+          <Dialog className="restart__dialog">
+            <Heading slot="title">Are you sure?</Heading>
+            <div className="restart__button-group">
               <BaseButton slot="close" color="white" variant="primary">
-                continue game
+                never mind
               </BaseButton>
-              <Restart />
               <BaseButton color="pink" variant="primary">
-                quit game
+                restart
               </BaseButton>
             </div>
           </Dialog>
