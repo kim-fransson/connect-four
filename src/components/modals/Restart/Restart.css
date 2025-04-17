@@ -1,43 +1,3 @@
-.restart__modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0 0 0 / 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  padding: 20px;
-}
-
-.restart__modal {
-  position: relative;
-  box-shadow: 0px 10px 0px var(--black);
-  border-radius: 40px;
-  padding: 20px;
-  background: var(--purple-400);
-  color: var(--white);
-  border: 3px solid var(--black);
-  outline: none;
-  max-width: 480px;
-  height: 437px;
-
-  flex: 1;
-  display: grid;
-  align-items: center;
-}
-
-.restart__dialog {
-  outline: none;
-}
-
-.restart__modal * h2 {
-  font-size: var(--font-size-heading-l);
-  line-height: var(--line-height-heading-l);
-  font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
-}
-
 .restart__button-group {
   display: grid;
   margin-top: 28px;
@@ -45,11 +5,6 @@
 }
 
 @media (min-width: 768px) {
-  .restart__modal {
-    height: 491px;
-    padding: 40px;
-  }
-
   .restart__button-group {
     margin-top: 36px;
   }
