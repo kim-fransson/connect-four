@@ -1,0 +1,23 @@
+.background-blob {
+  position: fixed;
+  bottom: 0;
+  width: 100svw;
+  height: calc(236px * 2);
+  border-radius: 60px 60px 0px 0px;
+}
+
+.background-blob.purple {
+  background: var(--purple-500);
+}
+.background-blob.yellow {
+  background: var(--yellow);
+}
+.background-blob.pink {
+  background: var(--pink);
+}
+
+@media (min-width: 1024px) {
+  .background-blob {
+    height: calc(200px * 2);
+  }
+}
