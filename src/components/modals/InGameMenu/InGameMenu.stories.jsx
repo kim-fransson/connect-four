@@ -1,7 +1,7 @@
-import { Menu } from "./Menu";
+import { InGameMenu } from "./InGameMenu";
 
 export default {
-  component: Menu,
+  component: InGameMenu,
   parameters: {
     layout: "centered",
   },

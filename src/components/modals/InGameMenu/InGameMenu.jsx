@@ -7,9 +7,8 @@ import {
 } from "react-aria-components";
 
 import { BaseButton } from "../../buttons";
-import { Check } from "lucide-react";
 
-import "./Menu.css";
+import "./InGameMenu.css";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { modalAnimations, overlayAnimations } from "../animations";
@@ -17,7 +16,7 @@ import { modalAnimations, overlayAnimations } from "../animations";
 const MotionModalOverlay = motion.create(ModalOverlay);
 const MotionModal = motion.create(Modal);
 
-export const Menu = () => {
+export const InGameMenu = () => {
   const [animation, setAnimation] = useState("unmounted");
 
   const handleOpenChange = (isOpen) => {
@@ -31,7 +30,7 @@ export const Menu = () => {
     <DialogTrigger onOpenChange={handleOpenChange}>
       <BaseButton variant="subtle">menu</BaseButton>
       <MotionModalOverlay
-        className="menu__modal-overlay"
+        className="in-game-menu__modal-overlay"
         isExiting={animation === "hidden"}
         onAnimationComplete={(animation) => {
           setAnimation((a) =>
@@ -43,10 +42,10 @@ export const Menu = () => {
         exit="hidden"
         animate={animation}
       >
-        <MotionModal className="menu__modal" variants={modalAnimations}>
-          <Dialog className="menu__dialog">
+        <MotionModal className="in-game-menu__modal" variants={modalAnimations}>
+          <Dialog className="in-game-menu__dialog">
             <Heading slot="title">pause</Heading>
-            <div className="menu__button-group">
+            <div className="in-game-menu__button-group">
               <BaseButton slot="close" color="white" variant="primary">
                 continue game
               </BaseButton>

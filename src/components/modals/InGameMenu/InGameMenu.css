@@ -1,4 +1,4 @@
-.menu__modal-overlay {
+.in-game-menu__modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0 0 0 / 0.5);
@@ -9,7 +9,7 @@
   padding: 20px;
 }
 
-.menu__modal {
+.in-game-menu__modal {
   position: relative;
   box-shadow: 0px 10px 0px var(--black);
   border-radius: 40px;
@@ -26,11 +26,11 @@
   align-items: center;
 }
 
-.menu__dialog {
+.in-game-menu__dialog {
   outline: none;
 }
 
-.menu__modal * h2 {
+.in-game-menu__modal * h2 {
   font-size: var(--font-size-heading-l);
   line-height: var(--line-height-heading-l);
   font-weight: 700;
@@ -38,19 +38,19 @@
   text-align: center;
 }
 
-.menu__button-group {
+.in-game-menu__button-group {
   display: grid;
   margin-top: 28px;
   gap: 20px;
 }
 
 @media (min-width: 768px) {
-  .menu__modal {
+  .in-game-menu__modal {
     height: 491px;
     padding: 40px;
   }
 
-  .menu__button-group {
+  .in-game-menu__button-group {
     margin-top: 36px;
   }
 }
