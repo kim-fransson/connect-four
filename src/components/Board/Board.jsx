@@ -1,9 +1,8 @@
 import {
   FocusScope,
   mergeProps,
+  useFocus,
   useFocusManager,
-  useFocusRing,
-  useFocusVisible,
   useHover,
   usePress,
 } from "react-aria";
@@ -12,8 +11,22 @@ import { Marker } from "./Marker/Marker";
 import { motion } from "motion/react";
 
 import "./Board.css";
+import { useRef, useState } from "react";
 
 export const Board = ({ board, onColumnClick, currentPlayer }) => {
+  const [activeColumn, setActiveColumn] = useState(null);
+  const markerTimeout = useRef(null);
+
+  const updateActiveColumn = (index) => {
+    clearTimeout(markerTimeout.current);
+    setActiveColumn(index);
+  };
+
+  const clearActiveColumn = () => {
+    markerTimeout.current = setTimeout(() => {
+      setActiveColumn(null);
+    }, 500);
+  };
   const handleColumnPress = (column) => {
     onColumnClick(column);
   };
@@ -28,6 +41,9 @@ export const Board = ({ board, onColumnClick, currentPlayer }) => {
               items={column}
               onPress={() => handleColumnPress(index)}
               currentPlayer={currentPlayer}
+              isActive={index === activeColumn}
+              updateActiveColumn={updateActiveColumn}
+              clearActiveColumn={clearActiveColumn}
             />
           ))}
         </FocusScope>
@@ -36,16 +52,29 @@ export const Board = ({ board, onColumnClick, currentPlayer }) => {
   );
 };
 
-const Column = ({ index: colIndex, items, onPress, currentPlayer }) => {
+const Column = ({
+  index: colIndex,
+  items,
+  onPress,
+  currentPlayer,
+  updateActiveColumn,
+  clearActiveColumn,
+  isActive,
+}) => {
   const { pressProps } = usePress({
     onPress,
   });
 
-  const { hoverProps, isHovered } = useHover({});
-  const { focusProps, isFocusVisible } = useFocusRing({});
+  const { hoverProps } = useHover({
+    onHoverChange: (isHover) =>
+      isHover ? updateActiveColumn(colIndex) : clearActiveColumn(),
+  });
+  const { focusProps } = useFocus({
+    onFocusChange: (isFocus) =>
+      isFocus ? updateActiveColumn(colIndex) : clearActiveColumn(),
+  });
   const focusManager = useFocusManager();
   const handleKeyDown = (e) => {
-    console.log({ key: e.key });
     switch (e.key) {
       case "ArrowRight":
         focusManager.focusNext({ wrap: true });
@@ -67,14 +96,17 @@ const Column = ({ index: colIndex, items, onPress, currentPlayer }) => {
       onKeyDown={handleKeyDown}
     >
       <>
-        {(isHovered || isFocusVisible) && (
+        {isActive && (
           <motion.div
             animate={{ scale: [1, 1.1] }}
             transition={{
-              repeat: Infinity,
-              repeatType: "reverse",
-              duration: 0.6,
+              scale: {
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 0.6,
+              },
             }}
+            layoutId={`marker`}
           >
             <Marker className="board__marker" color={currentPlayer} />
           </motion.div>
