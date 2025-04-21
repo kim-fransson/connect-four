@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import "./Counter.css";
 
-export const Counter = ({ color, highlight }) => {
+export const Counter = ({ color, highlight, id }) => {
   return (
-    <div className={`counter ${color}`}>
+    <div id={id} className={`counter ${color}`}>
       {highlight && (
         <motion.div
           animate={{ opacity: [0, 1] }}

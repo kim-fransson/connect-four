@@ -1,8 +1,17 @@
 import React from "react";
+import { action } from "@storybook/addon-actions";
+
 import { Board } from "./Board";
 
 export default {
   component: Board,
+  parameters: {
+    layout: "centered",
+  },
+  args: {
+    onColumnClick: (col) => action("columnClicked")(col),
+    currentPlayer: "red",
+  },
 };
 
 const createEmptyBoard = (columns = 7, rows = 6) =>
@@ -12,26 +21,26 @@ const createEmptyBoard = (columns = 7, rows = 6) =>
 
 const redYellow = (i) => (i % 2 === 0 ? { color: "red" } : { color: "yellow" });
 
-export const Empty = () => {
+export const Empty = (args) => {
   const board = createEmptyBoard();
-  return <Board board={board} />;
+  return <Board {...args} board={board} />;
 };
 
-export const FirstColumnFilled = () => {
+export const FirstColumnFilled = (args) => {
   const board = createEmptyBoard();
   board[0] = board[0].map((_, i) => redYellow(i));
-  return <Board board={board} />;
+  return <Board {...args} board={board} />;
 };
 
-export const LastRowFilled = () => {
+export const LastRowFilled = (args) => {
   const board = createEmptyBoard();
   for (let col = 0; col < board.length; col++) {
     board[col][5] = redYellow(col);
   }
-  return <Board board={board} />;
+  return <Board {...args} board={board} />;
 };
 
-export const BottomRightCornerFilled = () => {
+export const BottomRightCornerFilled = (args) => {
   const board = createEmptyBoard();
   board[6][5] = { color: "red" };
   board[5][5] = { color: "yellow" };
@@ -39,14 +48,19 @@ export const BottomRightCornerFilled = () => {
   board[6][4] = { color: "yellow" };
   board[6][3] = { color: "red" };
   board[5][4] = { color: "yellow" };
-  return <Board board={board} />;
+  return <Board {...args} board={board} />;
 };
 
-export const Highlight = () => {
+export const Highlight = (args) => {
   const board = createEmptyBoard();
   board[6][2] = { color: "red", highlight: true };
   board[6][3] = { color: "red", highlight: true };
   board[6][4] = { color: "red", highlight: true };
   board[6][5] = { color: "red", highlight: true };
-  return <Board board={board} />;
+  return <Board {...args} board={board} />;
+};
+
+export const CurrentPlayerRed = (args) => {
+  const board = createEmptyBoard();
+  return <Board {...args} board={board} currentPlayer="red" />;
 };

@@ -11,6 +11,7 @@
   inset: 0;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  pointer-events: none;
 }
 
 .board__wrapper::before {
@@ -34,6 +35,15 @@
   display: grid;
   grid-template-rows: repeat(6, 46px);
   gap: 1px;
+  cursor: pointer;
+  outline: none;
+}
+
+.board__marker {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  translate: -50% -100%;
 }
 
 @media (min-width: 768px) {
@@ -52,6 +62,10 @@
   .board__column {
     grid-template-rows: repeat(6, 75px);
     gap: 11px;
+  }
+
+  .board__marker {
+    top: -20px;
   }
 
   .board__wrapper::before {
