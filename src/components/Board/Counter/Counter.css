@@ -1,0 +1,25 @@
+.counter {
+  aspect-ratio: 41 / 46;
+  background-repeat: no-repeat;
+}
+
+.counter.red {
+  background-image: url("../../../assets/images/counter-red-small.svg");
+}
+.counter.yellow {
+  background-image: url("../../../assets/images/counter-yellow-small.svg");
+}
+
+@media (min-width: 768px) {
+  .counter {
+    aspect-ratio: 70 / 75;
+    background-repeat: no-repeat;
+  }
+  .counter.red {
+    background-image: url("../../../assets//images/counter-red-large.svg");
+  }
+
+  .counter.yellow {
+    background-image: url("../../../assets//images/counter-yellow-large.svg");
+  }
+}
