@@ -23,5 +23,20 @@ export default {
 export const Purple = {
   args: {
     color: "purple",
+    animation: "show"
   },
+};
+
+export const Red = {
+  args: {
+    animation: "show",
+    color: "red"
+  }
+};
+
+export const Yellow = {
+  args: {
+    animation: "show",
+    color: "yellow"
+  }
 };

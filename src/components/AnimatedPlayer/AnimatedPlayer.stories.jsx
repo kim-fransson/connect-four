@@ -20,7 +20,6 @@ export default {
 export const Player1 = {
   args: {
     color: "red",
-    follow: true,
     animation: "idle",
   },
 };
@@ -28,7 +27,27 @@ export const Player1 = {
 export const Player2 = {
   args: {
     color: "yellow",
-    follow: true,
     animation: "idle",
   },
+};
+
+export const Follow = {
+  args: {
+    color: "red",
+    animation: "follow"
+  }
+};
+
+export const Win = {
+  args: {
+    color: "red",
+    animation: "win"
+  }
+};
+
+export const Lose = {
+  args: {
+    color: "red",
+    animation: "lose"
+  }
 };
