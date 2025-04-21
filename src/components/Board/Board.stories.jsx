@@ -64,3 +64,8 @@ export const CurrentPlayerRed = (args) => {
   const board = createEmptyBoard();
   return <Board {...args} board={board} currentPlayer="red" />;
 };
+
+export const CurrentPlayerYellow = (args) => {
+  const board = createEmptyBoard();
+  return <Board {...args} board={board} currentPlayer="yellow" />;
+};
