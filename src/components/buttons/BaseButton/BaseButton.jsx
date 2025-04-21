@@ -32,11 +32,11 @@ const variantAnimations = {
       background: "var(--purple-500)",
     },
     hovered: {
-      background: "var(--pink)",
+      background: "var(--red)",
       rotate: [0, -8, 8, -5, 2.5, -2.5, 0],
     },
     pressed: {
-      background: "var(--pink)",
+      background: "var(--red)",
       scale: 0.9,
     },
   },
@@ -48,7 +48,7 @@ export const BaseButton = ({
   variant,
   className,
   children,
-  color = "pink",
+  color = "red",
   textAlign = "center",
   ...props
 }) => {

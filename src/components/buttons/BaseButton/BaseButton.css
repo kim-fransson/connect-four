@@ -23,7 +23,7 @@
   place-content: center;
   padding-top: 3px;
 
-  background: var(--pink);
+  background: var(--red);
   border: 3px solid var(--black);
   box-shadow: 0px 4px 0px var(--black);
 }
@@ -47,8 +47,8 @@
   text-transform: uppercase;
 }
 
-.base-button-pink {
-  background: var(--pink);
+.base-button-red {
+  background: var(--red);
   color: var(--white);
 }
 

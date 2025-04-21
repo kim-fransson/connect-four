@@ -12,8 +12,8 @@
 .background-blob.yellow {
   background: var(--yellow);
 }
-.background-blob.pink {
-  background: var(--pink);
+.background-blob.red {
+  background: var(--red);
 }
 
 @media (min-width: 1024px) {

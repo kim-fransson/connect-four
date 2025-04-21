@@ -17,7 +17,7 @@ export default {
     },
     color: {
       control: { type: "select" },
-      options: ["pink", "yellow", "white"],
+      options: ["red", "yellow", "white"],
     },
     textAlign: {
       control: { type: "select" },

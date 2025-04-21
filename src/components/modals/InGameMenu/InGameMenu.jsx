@@ -15,7 +15,7 @@ export const InGameMenu = () => {
           continue game
         </BaseButton>
         <Restart />
-        <BaseButton color="pink" variant="primary">
+        <BaseButton color="red" variant="primary">
           quit game
         </BaseButton>
       </div>
