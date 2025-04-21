@@ -17,7 +17,7 @@ export const Restart = ({ btnVariant = "primary", btnColor = "white" }) => {
         <BaseButton slot="close" color="white" variant="primary">
           never mind
         </BaseButton>
-        <BaseButton color="pink" variant="primary">
+        <BaseButton color="red" variant="primary">
           restart
         </BaseButton>
       </div>
