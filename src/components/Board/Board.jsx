@@ -9,7 +9,11 @@ export const Board = ({ board }) => {
           <div className="board__column" key={colIndex}>
             {column.map((counter, rowIndex) =>
               counter ? (
-                <Counter key={rowIndex} color={counter.color} />
+                <Counter
+                  key={rowIndex}
+                  color={counter.color}
+                  highlight={counter.highlight}
+                />
               ) : (
                 <div></div>
               )

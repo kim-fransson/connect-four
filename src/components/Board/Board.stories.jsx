@@ -41,3 +41,12 @@ export const BottomRightCornerFilled = () => {
   board[5][4] = { color: "yellow" };
   return <Board board={board} />;
 };
+
+export const Highlight = () => {
+  const board = createEmptyBoard();
+  board[6][2] = { color: "red", highlight: true };
+  board[6][3] = { color: "red", highlight: true };
+  board[6][4] = { color: "red", highlight: true };
+  board[6][5] = { color: "red", highlight: true };
+  return <Board board={board} />;
+};

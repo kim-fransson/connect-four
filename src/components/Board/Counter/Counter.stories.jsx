@@ -9,8 +9,23 @@ export const Red = {
     color: "red",
   },
 };
+
+export const RedHighlight = {
+  args: {
+    color: "red",
+    highlight: true,
+  },
+};
+
 export const Yellow = {
   args: {
     color: "yellow",
   },
+};
+
+export const YellowHighlight = {
+  args: {
+    color: "yellow",
+    highlight: true
+  }
 };

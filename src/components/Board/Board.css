@@ -24,7 +24,7 @@
 .board__grid {
   display: grid;
   grid-template-columns: repeat(7, 41px);
-  column-gap: 5.5px;
+  column-gap: 5.7px;
   padding-top: 6px;
   padding-left: 7px;
 }
@@ -51,7 +51,7 @@
 
   .board__column {
     grid-template-rows: repeat(6, 75px);
-    gap: 12px;
+    gap: 11px;
   }
 
   .board__wrapper::before {

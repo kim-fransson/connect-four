@@ -1,6 +1,9 @@
 .counter {
-  aspect-ratio: 41 / 46;
+  width: 41px;
+  height: 46px;
   background-repeat: no-repeat;
+  display: grid;
+  place-content: center;
 }
 
 .counter.red {
@@ -10,9 +13,18 @@
   background-image: url("../../../assets/images/counter-yellow-small.svg");
 }
 
+.counter__highlight {
+  width: 20px;
+  aspect-ratio: 1 / 1;
+  border: 6px solid var(--white);
+  border-radius: 100%;
+  margin-bottom: 2px;
+}
+
 @media (min-width: 768px) {
   .counter {
-    aspect-ratio: 70 / 75;
+    width: 70px;
+    height: 75px;
     background-repeat: no-repeat;
   }
   .counter.red {
@@ -21,5 +33,9 @@
 
   .counter.yellow {
     background-image: url("../../../assets//images/counter-yellow-large.svg");
+  }
+
+  .counter__highlight {
+    width: 34px;
   }
 }
