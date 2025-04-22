@@ -30,6 +30,7 @@ const variantAnimations = {
   subtle: {
     initial: {
       background: "var(--purple-500)",
+      rotate: 0,
     },
     hovered: {
       background: "var(--red)",
