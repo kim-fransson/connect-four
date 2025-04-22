@@ -1,0 +1,6 @@
+.main-menu {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  background: var(--purple-500);
+}
