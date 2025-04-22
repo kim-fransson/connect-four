@@ -1,7 +1,7 @@
 import { AnimatedPlayer } from "../AnimatedPlayer/AnimatedPlayer";
 import "./ScoreCard.css";
 
-export const ScoreCard = ({ label, score, color, follow = false }) => {
+export const ScoreCard = ({ label, score, color, animation }) => {
   // const isMouse = useMedia("(pointer: fine)");
 
   return (
@@ -15,7 +15,7 @@ export const ScoreCard = ({ label, score, color, follow = false }) => {
       <AnimatedPlayer
         className={`score-card__player score-card__player-${color}`}
         color={color}
-        follow={follow}
+        animation={animation}
       />
     </div>
   );

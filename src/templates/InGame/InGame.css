@@ -1,0 +1,47 @@
+.in-game {
+  min-height: 100svh;
+  display: grid;
+  justify-items: center;
+  background: var(--purple-400);
+  padding: 50px 20px 0 20px;
+  align-items: start;
+}
+
+.in-game__wrapper {
+  display: grid;
+  align-items: start;
+  row-gap: 48px;
+}
+
+.in-game__logo {
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  justify-self: center;
+}
+
+.in-game__header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.in-game__main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 48px;
+}
+
+.in-game__board {
+  grid-column: 1 / span 2;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.in-game__game-card {
+  position: absolute;
+  bottom: 28px;
+  translate: 0 100%;
+}
