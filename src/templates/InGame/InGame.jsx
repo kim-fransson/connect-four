@@ -5,12 +5,26 @@ import {
   InGameMenu,
   Restart,
   ScoreCard,
+  Timer,
 } from "../../components";
 import logo from "../../assets/images/logo.svg";
 
 import "./InGame.css";
 
-export const InGame = ({ board = [], playerRed, playerYellow }) => {
+const playerToLabels = {
+  red: "player 1",
+  yellow: "player 2",
+};
+
+export const InGame = ({
+  board = [],
+  playerRed,
+  playerYellow,
+  currentPlayer,
+  active,
+  onTimerEnd,
+  onColumnClick,
+}) => {
   const {
     label: redLabel,
     score: redScore,
@@ -46,13 +60,27 @@ export const InGame = ({ board = [], playerRed, playerYellow }) => {
             animation={yellowAnimation}
           />
           <div className="in-game__board">
-            <Board board={board} />
-            <GameCard
-              label="player 1"
-              text="ready?"
-              buttonLabel="start"
-              className="in-game__game-card"
+            <Board
+              board={board}
+              onColumnClick={onColumnClick}
+              currentPlayer={active ? currentPlayer : ""}
             />
+            {active ? (
+              <Timer
+                label={`${playerToLabels[currentPlayer]}’s turn`}
+                color={currentPlayer}
+                from={30}
+                onTimerEnd={onTimerEnd}
+                className="in-game__timer"
+              />
+            ) : (
+              <GameCard
+                label={playerToLabels[currentPlayer]}
+                text="ready?"
+                buttonLabel="start"
+                className="in-game__game-card"
+              />
+            )}
           </div>
         </main>
       </div>

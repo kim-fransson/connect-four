@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { AnimatedNumber } from "../AnimatedNumber/AnimatedNumber";
 
 import "./Timer.css";
+import clsx from "clsx";
 
 const variants = {
   normal: {
@@ -34,7 +35,7 @@ const variants = {
   },
 };
 
-export const Timer = ({ label, from, onTimerEnd, color }) => {
+export const Timer = ({ label, from, onTimerEnd, color, className }) => {
   const [timeLeft, setTimeLeft] = useState(from);
   const isRunningRef = useRef(true);
   useHarmonicIntervalFn(
@@ -61,7 +62,7 @@ export const Timer = ({ label, from, onTimerEnd, color }) => {
     <motion.div
       aria-live="polite"
       aria-label={timeLeft}
-      className={`timer timer-${color}`}
+      className={clsx(`timer timer-${color}`, className)}
       variants={variants}
       animate={animation}
     >

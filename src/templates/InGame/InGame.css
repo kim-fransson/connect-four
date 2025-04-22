@@ -3,7 +3,7 @@
   display: grid;
   justify-items: center;
   background: var(--purple-400);
-  padding: 50px 20px 0 20px;
+  padding: 50px 20px 20px 20px;
   align-items: start;
 }
 
@@ -40,6 +40,7 @@
   position: relative;
 }
 
+.in-game__timer,
 .in-game__game-card {
   position: absolute;
   bottom: 28px;
