@@ -21,9 +21,17 @@ export const InGame = ({
   playerRed,
   playerYellow,
   currentPlayer,
-  active,
+  winner,
+  isGameActive,
+  isGameOver,
   onTimerEnd,
   onColumnClick,
+  onPlayAgain,
+  onStartGame,
+  onRestart,
+  onPause,
+  onContinue,
+  onQuit,
 }) => {
   const {
     label: redLabel,
@@ -42,9 +50,19 @@ export const InGame = ({
       <div className="in-game__wrapper">
         <h2 className="sr-only">In game</h2>
         <header className="in-game__header">
-          <InGameMenu />
+          <InGameMenu
+            onOpen={onPause}
+            onClose={onContinue}
+            onRestart={onRestart}
+            onQuit={onQuit}
+          />
           <img className="in-game__logo" src={logo} alt="" />
-          <Restart btnVariant="subtle" />
+          <Restart
+            onOpen={onPause}
+            onClose={onContinue}
+            onRestart={onRestart}
+            btnVariant="subtle"
+          />
         </header>
         <main className="in-game__main">
           <ScoreCard
@@ -63,9 +81,9 @@ export const InGame = ({
             <Board
               board={board}
               onColumnClick={onColumnClick}
-              currentPlayer={active ? currentPlayer : ""}
+              currentPlayer={isGameActive ? currentPlayer : ""}
             />
-            {active ? (
+            {isGameActive ? (
               <Timer
                 label={`${playerToLabels[currentPlayer]}’s turn`}
                 color={currentPlayer}
@@ -73,12 +91,21 @@ export const InGame = ({
                 onTimerEnd={onTimerEnd}
                 className="in-game__timer"
               />
+            ) : isGameOver ? (
+              <GameCard
+                label={playerToLabels[winner]}
+                text="wins"
+                buttonLabel="play again"
+                className="in-game__game-card"
+                onButtonPress={onPlayAgain}
+              />
             ) : (
               <GameCard
                 label={playerToLabels[currentPlayer]}
                 text="ready?"
                 buttonLabel="start"
                 className="in-game__game-card"
+                onButtonPress={onStartGame}
               />
             )}
           </div>

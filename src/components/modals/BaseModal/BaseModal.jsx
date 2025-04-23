@@ -35,14 +35,18 @@ export const BaseModal = ({
   trigger,
   color = "white",
   heading,
+  onOpen = () => {},
+  onClose = () => {},
   ...props
 }) => {
   const [animation, setAnimation] = useState("unmounted");
 
   const handleOpenChange = (isOpen) => {
     if (isOpen) {
+      onOpen();
       setAnimation("visible");
     } else {
+      onClose();
       setAnimation("hidden");
     }
   };

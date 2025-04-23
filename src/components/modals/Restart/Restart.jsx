@@ -2,9 +2,17 @@ import { BaseButton } from "../../buttons";
 import { BaseModal } from "../BaseModal/BaseModal";
 import "./Restart.css";
 
-export const Restart = ({ btnVariant = "primary", btnColor = "white" }) => {
+export const Restart = ({
+  btnVariant = "primary",
+  btnColor = "white",
+  onClose = () => {},
+  onOpen = () => {},
+  onRestart,
+}) => {
   return (
     <BaseModal
+      onOpen={onOpen}
+      onClose={onClose}
       trigger={
         <BaseButton variant={btnVariant} color={btnColor}>
           restart
@@ -17,7 +25,7 @@ export const Restart = ({ btnVariant = "primary", btnColor = "white" }) => {
         <BaseButton slot="close" color="white" variant="primary">
           never mind
         </BaseButton>
-        <BaseButton color="red" variant="primary">
+        <BaseButton onPress={onRestart} color="red" variant="primary">
           restart
         </BaseButton>
       </div>
