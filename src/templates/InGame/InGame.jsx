@@ -16,6 +16,31 @@ const playerToLabels = {
   yellow: "player 2",
 };
 
+const playerAnimations = (isGameActive, isGameOver, currentPlayer, winner) => {
+  let redAnimation = "idle";
+  let yellowAnimation = "idle";
+
+  if (isGameOver) {
+    if (winner === "red") {
+      redAnimation = "win";
+      yellowAnimation = "lose";
+    } else if (winner === "yellow") {
+      yellowAnimation = "win";
+      redAnimation = "lose";
+    }
+  } else if (isGameActive) {
+    if (currentPlayer === "red") {
+      redAnimation = "follow";
+      yellowAnimation = "idle";
+    } else {
+      yellowAnimation = "follow";
+      redAnimation = "idle";
+    }
+  }
+
+  return { redAnimation, yellowAnimation };
+};
+
 export const InGame = ({
   board = [],
   playerRed,
@@ -33,16 +58,15 @@ export const InGame = ({
   onContinue,
   onQuit,
 }) => {
-  const {
-    label: redLabel,
-    score: redScore,
-    animation: redAnimation,
-  } = playerRed;
-  const {
-    label: yellowLabel,
-    score: yellowScore,
-    animation: yellowAnimation,
-  } = playerYellow;
+  const { label: redLabel, score: redScore } = playerRed;
+  const { label: yellowLabel, score: yellowScore } = playerYellow;
+
+  const { redAnimation, yellowAnimation } = playerAnimations(
+    isGameActive,
+    isGameOver,
+    currentPlayer,
+    winner
+  );
 
   return (
     <div className="in-game">

@@ -27,6 +27,12 @@ const images = {
 };
 
 const animationVariants = (rotation, scaleX) => ({
+  initial: {
+    rotate: 0,
+    scaleX: 1,
+    scaleY: 1,
+    y: 0,
+  },
   follow: {
     rotate: rotation - 90,
     scaleX,
@@ -83,6 +89,7 @@ export const AnimatedPlayer = ({ color, className, animation = "idle" }) => {
         src={images[color][animation]}
         alt=""
         variants={variants}
+        initial="initial"
         animate={animation}
       />
     </div>

@@ -20,8 +20,8 @@ export default {
 
 export const Player1Ready = {
   args: {
-    playerRed: { label: "player 1", score: 0, animation: "idle" },
-    playerYellow: { label: "player 2", score: 0, animation: "idle" },
+    playerRed: { label: "player 1", score: 0 },
+    playerYellow: { label: "player 2", score: 0 },
     currentPlayer: "red",
     isGameActive: false,
     isGameOver: false,
@@ -34,12 +34,10 @@ export const Player2ready = {
     playerRed: {
       label: "player 1",
       score: 0,
-      animation: "idle",
     },
     playerYellow: {
       label: "player 2",
       score: 0,
-      animation: "idle",
     },
     currentPlayer: "yellow",
     active: false,
