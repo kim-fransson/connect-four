@@ -26,6 +26,7 @@
   font-weight: 700;
   font-size: var(--font-size-heading-xs);
   line-height: var(--line-height-heading-xs);
+  text-transform: uppercase;
 }
 
 .timer__value {

@@ -17,28 +17,21 @@ const playerToLabels = {
 };
 
 const playerAnimations = (isGameActive, isGameOver, currentPlayer, winner) => {
-  let redAnimation = "idle";
-  let yellowAnimation = "idle";
-
   if (isGameOver) {
-    if (winner === "red") {
-      redAnimation = "win";
-      yellowAnimation = "lose";
-    } else if (winner === "yellow") {
-      yellowAnimation = "win";
-      redAnimation = "lose";
-    }
-  } else if (isGameActive) {
-    if (currentPlayer === "red") {
-      redAnimation = "follow";
-      yellowAnimation = "idle";
-    } else {
-      yellowAnimation = "follow";
-      redAnimation = "idle";
-    }
+    return {
+      redAnimation: winner === "red" ? "win" : "lose",
+      yellowAnimation: winner === "yellow" ? "win" : "lose",
+    };
   }
 
-  return { redAnimation, yellowAnimation };
+  if (isGameActive) {
+    return {
+      redAnimation: currentPlayer === "red" ? "follow" : "idle",
+      yellowAnimation: currentPlayer === "yellow" ? "follow" : "idle",
+    };
+  }
+
+  return { redAnimation: "idle", yellowAnimation: "idle" };
 };
 
 export const InGame = ({
@@ -70,7 +63,7 @@ export const InGame = ({
 
   return (
     <div className="in-game">
-      <AnimatedBackgroundBlob color="purple" animation="show" />
+      <AnimatedBackgroundBlob color={winner || "purple"} animation="show" />
       <div className="in-game__wrapper">
         <h2 className="sr-only">In game</h2>
         <header className="in-game__header">
@@ -118,7 +111,7 @@ export const InGame = ({
             ) : isGameOver ? (
               <GameCard
                 label={playerToLabels[winner]}
-                text="wins"
+                text={winner ? "wins" : "draw"}
                 buttonLabel="play again"
                 className="in-game__game-card"
                 onButtonPress={onPlayAgain}
