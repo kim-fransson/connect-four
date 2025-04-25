@@ -89,12 +89,14 @@ export const InGame = ({
             label={redLabel}
             score={redScore}
             animation={redAnimation}
+            className="in-game__score-card-red"
           />
           <ScoreCard
             color="yellow"
             label={yellowLabel}
             score={yellowScore}
             animation={yellowAnimation}
+            className="in-game__score-card-yellow"
           />
           <div className="in-game__board">
             <Board

@@ -18,6 +18,6 @@
 
 @media (min-width: 1024px) {
   .background-blob {
-    height: calc(200px * 2);
+    height: 50%;
   }
 }

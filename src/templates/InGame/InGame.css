@@ -65,3 +65,27 @@
     justify-self: self-end;
   }
 }
+
+@media (min-width: 1024px) {
+  .in-game__wrapper {
+    row-gap: 48px;
+  }
+  .in-game__main {
+    column-gap: 58px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    place-items: center;
+  }
+  .in-game__score-card-red {
+    grid-column: 1 / span 1;
+    justify-self: end;
+  }
+  .in-game__board {
+    grid-row-start: 1;
+    grid-column: 2 / span 1;
+  }
+  .in-game__score-card-yellow {
+    grid-column: 3 / span 1;
+    justify-self: start;
+  }
+}
