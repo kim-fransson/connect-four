@@ -1,3 +1,4 @@
+import { createEmptyBoard } from "../../utils";
 import { InGame } from "./InGame";
 import { action } from "@storybook/addon-actions";
 
@@ -7,6 +8,7 @@ export default {
     layout: "fullscreen",
   },
   args: {
+    board: createEmptyBoard(),
     onTimerEnd: action("onTimerEnd"),
     onColumnClick: action("onColumnClick"),
     onPlayAgain: action("onPlayAgain"),
@@ -64,67 +66,67 @@ export const Player1Turn = {
 export const Player2Turn = {
   args: {
     playerRed: {
-      "label": "player 1",
-      "score": 0
+      label: "player 1",
+      score: 0,
     },
-    playerYellow:{
-      "label": "player 2",
-      "score": 0
+    playerYellow: {
+      label: "player 2",
+      score: 0,
     },
-    currentPlayer:"yellow",
+    currentPlayer: "yellow",
     isGameActive: true,
     isGameOver: false,
-    winner: ""
-  }
+    winner: "",
+  },
 };
 
 export const GameOverDraw = {
   args: {
     playerRed: {
-      "label": "player 1",
-      "score": 0
+      label: "player 1",
+      score: 0,
     },
-    playerYellow:{
-      "label": "player 2",
-      "score": 0
+    playerYellow: {
+      label: "player 2",
+      score: 0,
     },
-    currentPlayer:"yellow",
+    currentPlayer: "yellow",
     isGameActive: false,
     isGameOver: true,
-    winner: ""
-  }
+    winner: "",
+  },
 };
 
 export const Player1Win = {
   args: {
     playerRed: {
-      "label": "player 1",
-      "score": 0
+      label: "player 1",
+      score: 0,
     },
-    playerYellow:{
-      "label": "player 2",
-      "score": 0
+    playerYellow: {
+      label: "player 2",
+      score: 0,
     },
-    currentPlayer:"yellow",
+    currentPlayer: "yellow",
     isGameActive: false,
     isGameOver: true,
-    winner: "red"
-  }
+    winner: "red",
+  },
 };
 
 export const Player2Win = {
   args: {
     playerRed: {
-      "label": "player 1",
-      "score": 0
+      label: "player 1",
+      score: 0,
     },
-    playerYellow:{
-      "label": "player 2",
-      "score": 0
+    playerYellow: {
+      label: "player 2",
+      score: 0,
     },
-    currentPlayer:"yellow",
+    currentPlayer: "yellow",
     isGameActive: false,
     isGameOver: true,
-    winner: "yellow"
-  }
+    winner: "yellow",
+  },
 };

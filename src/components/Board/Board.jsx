@@ -12,8 +12,9 @@ import { motion } from "motion/react";
 
 import "./Board.css";
 import { useRef, useState } from "react";
+import clsx from "clsx";
 
-export const Board = ({ board, onColumnClick, currentPlayer }) => {
+export const Board = ({ board, onColumnClick, currentPlayer, isDisabled }) => {
   const [activeColumn, setActiveColumn] = useState(null);
   const markerTimeout = useRef(null);
 
@@ -44,6 +45,7 @@ export const Board = ({ board, onColumnClick, currentPlayer }) => {
               isActive={index === activeColumn}
               updateActiveColumn={updateActiveColumn}
               clearActiveColumn={clearActiveColumn}
+              isDisabled={isDisabled}
             />
           ))}
         </FocusScope>
@@ -60,9 +62,11 @@ const Column = ({
   updateActiveColumn,
   clearActiveColumn,
   isActive,
+  isDisabled,
 }) => {
   const { pressProps } = usePress({
     onPress,
+    isDisabled,
   });
 
   const { hoverProps } = useHover({
@@ -92,11 +96,11 @@ const Column = ({
       {...mergeProps(pressProps, hoverProps, focusProps)}
       role="button"
       tabIndex={0}
-      className="board__column"
+      className={clsx("board__column", isDisabled && "board__column-disabled")}
       onKeyDown={handleKeyDown}
     >
       <>
-        {isActive && (
+        {isActive && !isDisabled && (
           <motion.div
             animate={{ scale: [1, 1.1] }}
             transition={{

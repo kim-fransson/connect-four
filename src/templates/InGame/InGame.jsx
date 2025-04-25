@@ -103,6 +103,7 @@ export const InGame = ({
               board={board}
               onColumnClick={onColumnClick}
               currentPlayer={isGameActive ? currentPlayer : ""}
+              isDisabled={!isGameActive}
             />
             {isGameActive ? (
               <Timer

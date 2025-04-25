@@ -13,3 +13,8 @@ export const isBetween = (val, min, max) => {
 export const normalizeDeg = (deg) => (deg + 360) % 360;
 
 export const repeat = (pattern, times) => Array(times).fill(pattern).flat();
+
+export const createEmptyBoard = (columns = 7, rows = 6) =>
+  Array(columns)
+    .fill(null)
+    .map(() => Array(rows).fill(null));

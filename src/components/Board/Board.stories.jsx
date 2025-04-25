@@ -2,6 +2,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 
 import { Board } from "./Board";
+import { createEmptyBoard } from "../../utils";
 
 export default {
   component: Board,
@@ -13,11 +14,6 @@ export default {
     currentPlayer: "red",
   },
 };
-
-const createEmptyBoard = (columns = 7, rows = 6) =>
-  Array(columns)
-    .fill(null)
-    .map(() => Array(rows).fill(null));
 
 const redYellow = (i) => (i % 2 === 0 ? { color: "red" } : { color: "yellow" });
 
