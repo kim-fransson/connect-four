@@ -3,10 +3,20 @@ import { Restart } from "../Restart/Restart";
 import { BaseModal } from "../BaseModal/BaseModal";
 import "./InGameMenu.css";
 
-export const InGameMenu = ({ onRestart, onQuit, onOpen, onClose }) => {
+export const InGameMenu = ({
+  onRestart,
+  onQuit,
+  onOpen,
+  onClose,
+  className,
+}) => {
   return (
     <BaseModal
-      trigger={<BaseButton variant="subtle">menu</BaseButton>}
+      trigger={
+        <BaseButton className={className} variant="subtle">
+          menu
+        </BaseButton>
+      }
       heading="pause"
       color="purple"
       onOpen={onOpen}

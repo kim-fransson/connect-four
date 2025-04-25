@@ -23,7 +23,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  justify-content: space-between;
 }
 
 .in-game__main {
@@ -45,4 +44,24 @@
   position: absolute;
   bottom: 28px;
   translate: 0 100%;
+}
+
+@media (min-width: 768px) {
+  .in-game__wrapper {
+    row-gap: 32px;
+  }
+  .in-game__main {
+    row-gap: 32px;
+    column-gap: 38px;
+  }
+
+  .in-game__logo {
+    width: 52px;
+  }
+  .in-game__menu-btn {
+    justify-self: self-start;
+  }
+  .in-game__restart-btn {
+    justify-self: self-end;
+  }
 }

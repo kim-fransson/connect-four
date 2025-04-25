@@ -8,13 +8,14 @@ export const Restart = ({
   onClose = () => {},
   onOpen = () => {},
   onRestart,
+  className,
 }) => {
   return (
     <BaseModal
       onOpen={onOpen}
       onClose={onClose}
       trigger={
-        <BaseButton variant={btnVariant} color={btnColor}>
+        <BaseButton className={className} variant={btnVariant} color={btnColor}>
           restart
         </BaseButton>
       }

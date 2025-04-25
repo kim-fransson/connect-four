@@ -72,6 +72,7 @@ export const InGame = ({
             onClose={onContinue}
             onRestart={onRestart}
             onQuit={onQuit}
+            className="in-game__menu-btn"
           />
           <img className="in-game__logo" src={logo} alt="" />
           <Restart
@@ -79,6 +80,7 @@ export const InGame = ({
             onClose={onContinue}
             onRestart={onRestart}
             btnVariant="subtle"
+            className="in-game__restart-btn"
           />
         </header>
         <main className="in-game__main">
