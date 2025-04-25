@@ -10,13 +10,20 @@ import {
 import logo from "../../assets/images/logo.svg";
 
 import "./InGame.css";
+import { useMedia } from "react-use";
 
 const playerToLabels = {
   red: "player 1",
   yellow: "player 2",
 };
 
-const playerAnimations = (isGameActive, isGameOver, currentPlayer, winner) => {
+const playerAnimations = (
+  isGameActive,
+  isGameOver,
+  currentPlayer,
+  winner,
+  isMouse
+) => {
   if (isGameOver) {
     return {
       redAnimation: winner === "red" ? "win" : "lose",
@@ -24,7 +31,7 @@ const playerAnimations = (isGameActive, isGameOver, currentPlayer, winner) => {
     };
   }
 
-  if (isGameActive) {
+  if (isGameActive && isMouse) {
     return {
       redAnimation: currentPlayer === "red" ? "follow" : "idle",
       yellowAnimation: currentPlayer === "yellow" ? "follow" : "idle",
@@ -54,11 +61,14 @@ export const InGame = ({
   const { label: redLabel, score: redScore } = playerRed;
   const { label: yellowLabel, score: yellowScore } = playerYellow;
 
+  const isMouse = useMedia("(pointer: fine)");
+
   const { redAnimation, yellowAnimation } = playerAnimations(
     isGameActive,
     isGameOver,
     currentPlayer,
-    winner
+    winner,
+    isMouse
   );
 
   return (

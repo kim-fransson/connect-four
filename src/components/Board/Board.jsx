@@ -13,6 +13,7 @@ import { motion } from "motion/react";
 import "./Board.css";
 import { useRef, useState } from "react";
 import clsx from "clsx";
+import { useMedia } from "react-use";
 
 export const Board = ({ board, onColumnClick, currentPlayer, isDisabled }) => {
   const [activeColumn, setActiveColumn] = useState(null);
@@ -64,6 +65,8 @@ const Column = ({
   isActive,
   isDisabled,
 }) => {
+  const isMouse = useMedia("(pointer: fine)");
+
   const { pressProps } = usePress({
     onPress,
     isDisabled,
@@ -100,7 +103,7 @@ const Column = ({
       onKeyDown={handleKeyDown}
     >
       <>
-        {isActive && !isDisabled && (
+        {isActive && !isDisabled && isMouse && (
           <motion.div
             animate={{ scale: [1, 1.1] }}
             transition={{
