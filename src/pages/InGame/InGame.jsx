@@ -19,6 +19,7 @@ const initialState = {
     score: 0,
     isCpu: false,
   },
+  startTheGame: "red",
   currentPlayer: "red",
   gameState: GameState.Idle,
 };
@@ -33,8 +34,20 @@ const useConnectFourStore = create((set) => ({
         state.currentPlayer
       );
 
+      const playerRedScore = state.playerRed.score;
+      const playerYellowScore = state.playerYellow.score;
+
       return {
         ...state,
+        playerRed: {
+          ...state.playerRed,
+          score: winner === "red" ? playerRedScore + 1 : playerRedScore,
+        },
+        playerYellow: {
+          ...state.playerYellow,
+          score:
+            winner === "yellow" ? playerYellowScore + 1 : playerYellowScore,
+        },
         board,
         gameState: isGameOver ? GameState.GameOver : GameState.Active,
         winner,
@@ -66,6 +79,14 @@ const useConnectFourStore = create((set) => ({
 
       return {};
     }),
+  playAgain: () =>
+    set((state) => ({
+      gameState: GameState.Idle,
+      startTheGame: state.startTheGame === "red" ? "yellow" : "red",
+      currentPlayer: state.startTheGame === "red" ? "yellow" : "red",
+      winner: null,
+      board: Array.from({ length: 7 }, () => Array(6).fill(null)),
+    })),
 }));
 
 export const InGame = () => {
@@ -80,6 +101,7 @@ export const InGame = () => {
   const timesUp = useConnectFourStore((state) => state.timesUp);
   const updateBoard = useConnectFourStore((state) => state.updateBoard);
   const nextPlayer = useConnectFourStore((state) => state.nextPlayer);
+  const playAgain = useConnectFourStore((state) => state.playAgain);
 
   const handleColumnClick = (column) => {
     const { board: updatedBoard, placement } = dropCounter(
@@ -102,6 +124,7 @@ export const InGame = () => {
       isGameOver={gameState === GameState.GameOver}
       onStartGame={startGame}
       onTimerEnd={timesUp}
+      onPlayAgain={playAgain}
       onColumnClick={handleColumnClick}
     />
   );
