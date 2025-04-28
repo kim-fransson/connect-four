@@ -58,8 +58,8 @@ export const InGame = ({
   onContinue,
   onQuit,
 }) => {
-  const { label: redLabel, score: redScore } = playerRed;
-  const { label: yellowLabel, score: yellowScore } = playerYellow;
+  const { score: redScore } = playerRed;
+  const { score: yellowScore } = playerYellow;
 
   const isMouse = useMedia("(pointer: fine)");
 
@@ -96,14 +96,14 @@ export const InGame = ({
         <main className="in-game__main">
           <ScoreCard
             color="red"
-            label={redLabel}
+            label="player 1"
             score={redScore}
             animation={redAnimation}
             className="in-game__score-card-red"
           />
           <ScoreCard
             color="yellow"
-            label={yellowLabel}
+            label="player 2"
             score={yellowScore}
             animation={yellowAnimation}
             className="in-game__score-card-yellow"

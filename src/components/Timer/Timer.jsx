@@ -1,10 +1,11 @@
 import { useHarmonicIntervalFn } from "react-use";
 import { motion } from "motion/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatedNumber } from "../AnimatedNumber/AnimatedNumber";
 
 import "./Timer.css";
 import clsx from "clsx";
+import { create } from "zustand";
 
 const variants = {
   normal: {
@@ -35,40 +36,52 @@ const variants = {
   },
 };
 
-export const Timer = ({ label, from, onTimerEnd, color, className }) => {
-  const [timeLeft, setTimeLeft] = useState(from);
+const useTimerStore = create((set) => ({
+  secondsLeft: 30,
+  dec: () => set((state) => ({ secondsLeft: state.secondsLeft - 1 })),
+  reset: (value = 30) => set(() => ({ secondsLeft: value })),
+}));
+
+export const Timer = ({ label, onTimerEnd, color, className }) => {
+  const secondsLeft = useTimerStore((state) => state.secondsLeft);
+  const reset = useTimerStore((state) => state.reset);
+  const dec = useTimerStore((state) => state.dec);
+
   const isRunningRef = useRef(true);
   useHarmonicIntervalFn(
     () => {
-      setTimeLeft((prev) => {
-        if (prev <= 0) {
-          if (isRunningRef.current) {
-            isRunningRef.current = false;
-            onTimerEnd?.();
-          }
-          return 0;
+      if (secondsLeft <= 0) {
+        if (isRunningRef.current) {
+          isRunningRef.current = false;
+          onTimerEnd?.();
         }
-        return prev - 1;
-      });
+      } else {
+        dec();
+      }
     },
     isRunningRef.current ? 1000 : null
   );
 
+  useEffect(() => {
+    reset();
+    isRunningRef.current = true;
+  }, [color, reset]);
+
   let animation = "normal";
-  if (timeLeft === 0) animation = "shake";
-  else if (timeLeft <= 5) animation = "pulse";
+  if (secondsLeft === 0) animation = "shake";
+  else if (secondsLeft <= 5) animation = "pulse";
 
   return (
     <motion.div
       aria-live="polite"
-      aria-label={timeLeft}
+      aria-label={secondsLeft}
       className={clsx(`timer timer-${color}`, className)}
       variants={variants}
       animate={animation}
     >
       <span className="timer__label">{label}</span>
       <div className="timer__value">
-        <AnimatedNumber value={timeLeft} padding={1} />
+        <AnimatedNumber value={secondsLeft} padding={1} />
         {"s"}
       </div>
     </motion.div>

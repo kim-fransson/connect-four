@@ -105,17 +105,18 @@ const Column = ({
       <>
         {isActive && !isDisabled && isMouse && (
           <motion.div
+            className="board__marker"
             animate={{ scale: [1, 1.1] }}
             transition={{
               scale: {
                 repeat: Infinity,
                 repeatType: "reverse",
-                duration: 0.6,
+                duration: 0.5,
               },
             }}
             layoutId={`marker`}
           >
-            <Marker className="board__marker" color={currentPlayer} />
+            <Marker color={currentPlayer} />
           </motion.div>
         )}
         {items.map((counter, rowIndex) =>
