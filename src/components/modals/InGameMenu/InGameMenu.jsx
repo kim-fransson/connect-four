@@ -1,15 +1,8 @@
 import { BaseButton } from "../../buttons";
-import { Restart } from "../Restart/Restart";
 import { BaseModal } from "../BaseModal/BaseModal";
 import "./InGameMenu.css";
 
-export const InGameMenu = ({
-  onRestart,
-  onQuit,
-  onOpen,
-  onClose,
-  className,
-}) => {
+export const InGameMenu = ({ onQuit, onOpen, onClose, className }) => {
   return (
     <BaseModal
       trigger={
@@ -26,8 +19,7 @@ export const InGameMenu = ({
         <BaseButton slot="close" color="white" variant="primary">
           continue game
         </BaseButton>
-        <Restart onRestart={onRestart} />
-        <BaseButton onPress={onQuit} color="red" variant="primary">
+        <BaseButton slot="close" onPress={onQuit} color="red" variant="primary">
           quit game
         </BaseButton>
       </div>

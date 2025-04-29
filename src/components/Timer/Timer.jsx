@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { AnimatedNumber } from "../AnimatedNumber/AnimatedNumber";
@@ -50,7 +51,10 @@ export const Timer = ({ label, onTimerEnd, color, className, isPaused }) => {
 
   useEffect(() => {
     resetCountdown();
-  }, [color, resetCountdown]);
+    if (!isPaused) {
+      startCountdown();
+    }
+  }, [color, resetCountdown, startCountdown]);
 
   useEffect(() => {
     if (isPaused) {
@@ -58,7 +62,7 @@ export const Timer = ({ label, onTimerEnd, color, className, isPaused }) => {
     } else {
       startCountdown();
     }
-  }, [isPaused, startCountdown, stopCountdown, count]);
+  }, [isPaused, startCountdown, stopCountdown]);
 
   let animation = "normal";
   if (count === 0) animation = "shake";

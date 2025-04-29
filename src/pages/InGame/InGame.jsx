@@ -21,6 +21,7 @@ const initialState = {
   },
   startTheGame: "red",
   currentPlayer: "red",
+  winner: null,
   gameState: GameState.Idle,
   isTimerPaused: true,
 };
@@ -97,9 +98,20 @@ const useConnectFourStore = create((set) => ({
     set(() => ({
       isTimerPaused: false,
     })),
+  restartGame: () =>
+    set((state) => ({
+      board: Array.from({ length: 7 }, () => Array(6).fill(null)),
+      isTimerPaused: true,
+      gameState: GameState.Idle,
+      currentPlayer: state.startTheGame,
+    })),
+  quitGame: () =>
+    set(() => ({
+      ...initialState,
+    })),
 }));
 
-export const InGame = () => {
+export const InGame = ({ onQuitGame }) => {
   const board = useConnectFourStore((state) => state.board);
   const playerRed = useConnectFourStore((state) => state.playerRed);
   const playerYellow = useConnectFourStore((state) => state.playerYellow);
@@ -115,6 +127,8 @@ export const InGame = () => {
   const playAgain = useConnectFourStore((state) => state.playAgain);
   const pauseGame = useConnectFourStore((state) => state.pauseGame);
   const continueGame = useConnectFourStore((state) => state.continueGame);
+  const restartGame = useConnectFourStore((state) => state.restartGame);
+  const quiteGame = useConnectFourStore((state) => state.quitGame);
 
   const handleColumnClick = (column) => {
     const { board: updatedBoard, placement } = dropCounter(
@@ -124,6 +138,11 @@ export const InGame = () => {
     );
     updateBoard(updatedBoard, placement);
     nextPlayer();
+  };
+
+  const handleQuitGame = () => {
+    quiteGame();
+    onQuitGame();
   };
 
   return (
@@ -139,9 +158,11 @@ export const InGame = () => {
       onTimerEnd={timesUp}
       onPlayAgain={playAgain}
       isTimerPaused={isTimerPaused}
-      onColumnClick={handleColumnClick}
       onPause={pauseGame}
       onContinue={continueGame}
+      onRestart={restartGame}
+      onColumnClick={handleColumnClick}
+      onQuit={handleQuitGame}
     />
   );
 };

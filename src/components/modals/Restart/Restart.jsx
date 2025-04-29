@@ -9,13 +9,19 @@ export const Restart = ({
   onOpen = () => {},
   onRestart,
   className,
+  isDisabled = false,
 }) => {
   return (
     <BaseModal
       onOpen={onOpen}
       onClose={onClose}
       trigger={
-        <BaseButton className={className} variant={btnVariant} color={btnColor}>
+        <BaseButton
+          isDisabled={isDisabled}
+          className={className}
+          variant={btnVariant}
+          color={btnColor}
+        >
           restart
         </BaseButton>
       }
@@ -26,7 +32,12 @@ export const Restart = ({
         <BaseButton slot="close" color="white" variant="primary">
           never mind
         </BaseButton>
-        <BaseButton onPress={onRestart} color="red" variant="primary">
+        <BaseButton
+          slot="close"
+          onPress={onRestart}
+          color="red"
+          variant="primary"
+        >
           restart
         </BaseButton>
       </div>

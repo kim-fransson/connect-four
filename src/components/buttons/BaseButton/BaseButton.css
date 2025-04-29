@@ -75,6 +75,11 @@
   text-transform: uppercase;
 }
 
+.base-button:disabled {
+  opacity: 50%;
+  cursor: not-allowed;
+}
+
 @media (min-width: 768px) {
 }
 @media (min-width: 1024px) {

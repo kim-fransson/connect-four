@@ -98,7 +98,7 @@ const Column = ({
     <div
       {...mergeProps(pressProps, hoverProps, focusProps)}
       role="button"
-      tabIndex={0}
+      tabIndex={isDisabled ? -1 : 0}
       className={clsx("board__column", isDisabled && "board__column-disabled")}
       onKeyDown={handleKeyDown}
     >

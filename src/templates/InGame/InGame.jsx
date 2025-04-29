@@ -81,7 +81,6 @@ export const InGame = ({
           <InGameMenu
             onOpen={onPause}
             onClose={onContinue}
-            onRestart={onRestart}
             onQuit={onQuit}
             className="in-game__menu-btn"
           />
@@ -92,6 +91,7 @@ export const InGame = ({
             onRestart={onRestart}
             btnVariant="subtle"
             className="in-game__restart-btn"
+            isDisabled={isGameOver}
           />
         </header>
         <main className="in-game__main">
