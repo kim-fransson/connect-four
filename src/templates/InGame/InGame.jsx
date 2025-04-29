@@ -57,6 +57,7 @@ export const InGame = ({
   onPause,
   onContinue,
   onQuit,
+  isTimerPaused,
 }) => {
   const { score: redScore } = playerRed;
   const { score: yellowScore } = playerYellow;
@@ -122,6 +123,7 @@ export const InGame = ({
                 from={30}
                 onTimerEnd={onTimerEnd}
                 className="in-game__timer"
+                isPaused={isTimerPaused}
               />
             ) : isGameOver ? (
               <GameCard

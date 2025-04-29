@@ -1,11 +1,10 @@
-import { useHarmonicIntervalFn } from "react-use";
 import { motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { AnimatedNumber } from "../AnimatedNumber/AnimatedNumber";
 
 import "./Timer.css";
 import clsx from "clsx";
-import { create } from "zustand";
+import { useCountdown } from "usehooks-ts";
 
 const variants = {
   normal: {
@@ -36,52 +35,46 @@ const variants = {
   },
 };
 
-const useTimerStore = create((set) => ({
-  secondsLeft: 30,
-  dec: () => set((state) => ({ secondsLeft: state.secondsLeft - 1 })),
-  reset: (value = 30) => set(() => ({ secondsLeft: value })),
-}));
-
-export const Timer = ({ label, onTimerEnd, color, className }) => {
-  const secondsLeft = useTimerStore((state) => state.secondsLeft);
-  const reset = useTimerStore((state) => state.reset);
-  const dec = useTimerStore((state) => state.dec);
-
-  const isRunningRef = useRef(true);
-  useHarmonicIntervalFn(
-    () => {
-      if (secondsLeft <= 0) {
-        if (isRunningRef.current) {
-          isRunningRef.current = false;
-          onTimerEnd?.();
-        }
-      } else {
-        dec();
-      }
-    },
-    isRunningRef.current ? 1000 : null
-  );
+export const Timer = ({ label, onTimerEnd, color, className, isPaused }) => {
+  const [count, { startCountdown, stopCountdown, resetCountdown }] =
+    useCountdown({
+      countStart: 30,
+      intervalMs: 1000,
+    });
 
   useEffect(() => {
-    reset();
-    isRunningRef.current = true;
-  }, [color, reset]);
+    if (count <= 0) {
+      onTimerEnd();
+    }
+  }, [count, onTimerEnd]);
+
+  useEffect(() => {
+    resetCountdown();
+  }, [color, resetCountdown]);
+
+  useEffect(() => {
+    if (isPaused) {
+      stopCountdown();
+    } else {
+      startCountdown();
+    }
+  }, [isPaused, startCountdown, stopCountdown, count]);
 
   let animation = "normal";
-  if (secondsLeft === 0) animation = "shake";
-  else if (secondsLeft <= 5) animation = "pulse";
+  if (count === 0) animation = "shake";
+  else if (count <= 5) animation = "pulse";
 
   return (
     <motion.div
       aria-live="polite"
-      aria-label={secondsLeft}
+      aria-label={count}
       className={clsx(`timer timer-${color}`, className)}
       variants={variants}
       animate={animation}
     >
       <span className="timer__label">{label}</span>
       <div className="timer__value">
-        <AnimatedNumber value={secondsLeft} padding={1} />
+        <AnimatedNumber value={count} padding={1} />
         {"s"}
       </div>
     </motion.div>
