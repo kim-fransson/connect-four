@@ -3,7 +3,7 @@
   display: grid;
   justify-items: center;
   background: var(--purple-400);
-  padding: 20px;
+  padding: 16px;
   align-items: start;
 }
 
