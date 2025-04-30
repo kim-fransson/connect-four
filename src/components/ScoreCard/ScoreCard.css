@@ -67,7 +67,7 @@
 @media (min-width: 1024px) {
   .score-card {
     min-width: 147px;
-    padding: 50px 8px 24px 8px;
+    padding: 40px 8px 24px 8px;
     gap: 4px;
     flex-direction: column;
   }

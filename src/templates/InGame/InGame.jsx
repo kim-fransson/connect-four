@@ -75,7 +75,7 @@ export const InGame = ({
   return (
     <div className="in-game">
       <AnimatedBackgroundBlob color={winner || "purple"} animation="show" />
-      <div className="in-game__wrapper">
+      <div className="in-game__grid">
         <h2 className="sr-only">In game</h2>
         <header className="in-game__header">
           <InGameMenu
@@ -94,55 +94,53 @@ export const InGame = ({
             isDisabled={isGameOver}
           />
         </header>
+        <ScoreCard
+          color="red"
+          label="player 1"
+          score={redScore}
+          animation={redAnimation}
+          className="in-game__score-card-red"
+        />
+        <ScoreCard
+          color="yellow"
+          label="player 2"
+          score={yellowScore}
+          animation={yellowAnimation}
+          className="in-game__score-card-yellow"
+        />
         <main className="in-game__main">
-          <ScoreCard
-            color="red"
-            label="player 1"
-            score={redScore}
-            animation={redAnimation}
-            className="in-game__score-card-red"
+          <Board
+            board={board}
+            onColumnClick={onColumnClick}
+            currentPlayer={isGameActive ? currentPlayer : ""}
+            isDisabled={!isGameActive}
           />
-          <ScoreCard
-            color="yellow"
-            label="player 2"
-            score={yellowScore}
-            animation={yellowAnimation}
-            className="in-game__score-card-yellow"
-          />
-          <div className="in-game__board">
-            <Board
-              board={board}
-              onColumnClick={onColumnClick}
-              currentPlayer={isGameActive ? currentPlayer : ""}
-              isDisabled={!isGameActive}
+          {isGameActive ? (
+            <Timer
+              label={`${playerToLabels[currentPlayer]}’s turn`}
+              color={currentPlayer}
+              from={30}
+              onTimerEnd={onTimerEnd}
+              className="in-game__timer"
+              isPaused={isTimerPaused}
             />
-            {isGameActive ? (
-              <Timer
-                label={`${playerToLabels[currentPlayer]}’s turn`}
-                color={currentPlayer}
-                from={30}
-                onTimerEnd={onTimerEnd}
-                className="in-game__timer"
-                isPaused={isTimerPaused}
-              />
-            ) : isGameOver ? (
-              <GameCard
-                label={playerToLabels[winner]}
-                text={winner ? "wins" : "draw"}
-                buttonLabel="play again"
-                className="in-game__game-card"
-                onButtonPress={onPlayAgain}
-              />
-            ) : (
-              <GameCard
-                label={playerToLabels[currentPlayer]}
-                text="ready?"
-                buttonLabel="start"
-                className="in-game__game-card"
-                onButtonPress={onStartGame}
-              />
-            )}
-          </div>
+          ) : isGameOver ? (
+            <GameCard
+              label={playerToLabels[winner]}
+              text={winner ? "wins" : "draw"}
+              buttonLabel="play again"
+              className="in-game__game-card"
+              onButtonPress={onPlayAgain}
+            />
+          ) : (
+            <GameCard
+              label={playerToLabels[currentPlayer]}
+              text="ready?"
+              buttonLabel="start"
+              className="in-game__game-card"
+              onButtonPress={onStartGame}
+            />
+          )}
         </main>
       </div>
     </div>

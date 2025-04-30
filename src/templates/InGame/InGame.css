@@ -7,10 +7,34 @@
   align-items: start;
 }
 
-.in-game__wrapper {
+.in-game__grid {
   display: grid;
+  grid-template-areas:
+    "header header"
+    "score-red score-yellow"
+    "board board";
   align-items: start;
-  row-gap: 48px;
+  row-gap: 44px;
+  column-gap: 20px;
+  width: 100%;
+  max-width: max-content;
+}
+
+.in-game__header {
+  display: grid;
+  grid-area: header;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.in-game__score-card-red {
+  grid-area: score-red;
+}
+
+.in-game__score-card-yellow {
+  grid-area: score-yellow;
 }
 
 .in-game__logo {
@@ -19,43 +43,28 @@
   justify-self: center;
 }
 
-.in-game__header {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  max-width: 632px;
-  width: 100%;
-  margin: 0 auto;
-}
-
 .in-game__main {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 20px;
-  row-gap: 48px;
-}
-
-.in-game__board {
-  grid-column: 1 / span 2;
-  display: grid;
   place-items: center;
-  position: relative;
+  grid-area: board;
 }
 
 .in-game__timer,
 .in-game__game-card {
-  position: absolute;
-  bottom: 0px;
-  translate: 0 65%;
+  margin-top: -24px;
+  z-index: 100px;
+  position: relative;
 }
 
 @media (min-width: 768px) {
-  .in-game__wrapper {
-    row-gap: 32px;
+  .in-game__grid {
+    row-gap: 24px;
+    column-gap: 36px;
   }
-  .in-game__main {
-    row-gap: 32px;
-    column-gap: 38px;
+
+  .in-game__timer,
+  .in-game__game-card {
+    margin-top: -46px;
   }
 
   .in-game__logo {
@@ -70,25 +79,16 @@
 }
 
 @media (min-width: 1024px) {
-  .in-game__wrapper {
-    row-gap: 48px;
+  .in-game__grid {
+    column-gap: 56px;
+    grid-template-columns: 1fr 632px 1fr;
+    grid-template-areas:
+      "score-red header score-yellow"
+      "score-red board score-yellow";
   }
-  .in-game__main {
-    column-gap: 58px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    place-items: center;
-  }
-  .in-game__score-card-red {
-    grid-column: 1 / span 1;
-    justify-self: end;
-  }
-  .in-game__board {
-    grid-row-start: 1;
-    grid-column: 2 / span 1;
-  }
+
+  .in-game__score-card-red,
   .in-game__score-card-yellow {
-    grid-column: 3 / span 1;
-    justify-self: start;
+    align-self: center;
   }
 }
