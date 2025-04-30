@@ -11,6 +11,7 @@ import logo from "../../assets/images/logo.svg";
 
 import "./InGame.css";
 import { useMedia } from "react-use";
+import { AnimatePresence } from "motion/react";
 
 const playerToLabels = {
   red: "player 1",
@@ -74,7 +75,18 @@ export const InGame = ({
 
   return (
     <div className="in-game">
-      <AnimatedBackgroundBlob color={winner || "purple"} animation="show" />
+      <AnimatedBackgroundBlob
+        color="purple"
+        animation={winner ? "hide" : "show"}
+      />
+      <AnimatedBackgroundBlob
+        color="red"
+        animation={winner === "red" ? "show" : "hide"}
+      />
+      <AnimatedBackgroundBlob
+        color="yellow"
+        animation={winner === "yellow" ? "show" : "hide"}
+      />
       <div className="in-game__grid">
         <h2 className="sr-only">In game</h2>
         <header className="in-game__header">
