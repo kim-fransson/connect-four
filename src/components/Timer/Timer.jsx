@@ -45,7 +45,11 @@ export const Timer = ({ label, onTimerEnd, color, className, isPaused }) => {
 
   useEffect(() => {
     if (count <= 0) {
-      onTimerEnd();
+      const timeout = setTimeout(() => {
+        onTimerEnd();
+      }, 1300 * 4 + 250); // I want the end animation to run 4 times
+
+      return () => clearTimeout(timeout);
     }
   }, [count, onTimerEnd]);
 
