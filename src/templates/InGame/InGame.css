@@ -3,7 +3,7 @@
   display: grid;
   justify-items: center;
   background: var(--purple-400);
-  padding: 50px 20px 20px 20px;
+  padding: 20px;
   align-items: start;
 }
 
@@ -23,6 +23,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
+  max-width: 632px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .in-game__main {
@@ -42,8 +45,8 @@
 .in-game__timer,
 .in-game__game-card {
   position: absolute;
-  bottom: 28px;
-  translate: 0 100%;
+  bottom: 0px;
+  translate: 0 65%;
 }
 
 @media (min-width: 768px) {
