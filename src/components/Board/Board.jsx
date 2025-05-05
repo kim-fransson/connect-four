@@ -14,6 +14,7 @@ import "./Board.css";
 import { useRef, useState } from "react";
 import clsx from "clsx";
 import { useMedia } from "react-use";
+import { hasColumnSpace } from "../../utils";
 
 export const Board = ({ board, onColumnClick, currentPlayer, isDisabled }) => {
   const [activeColumn, setActiveColumn] = useState(null);
@@ -30,7 +31,9 @@ export const Board = ({ board, onColumnClick, currentPlayer, isDisabled }) => {
     }, 500);
   };
   const handleColumnPress = (column) => {
-    onColumnClick(column);
+    if (hasColumnSpace(board, column)) {
+      onColumnClick(column);
+    }
   };
   return (
     <div className="board__wrapper">

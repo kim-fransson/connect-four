@@ -156,12 +156,14 @@ export const checkGameOver = (board, placement, color) => {
   return { isGameOver: false };
 };
 
+export const hasColumnSpace = (board, col) => board[col][0] === null;
+
 export const getAvailableColumns = (board) => {
   const available = [];
 
   for (let col = 0; col < board.length; col++) {
     // If the top cell (first row) in the column is null, the column is not full
-    if (board[col][0] === null) {
+    if (hasColumnSpace(board, col)) {
       available.push(col);
     }
   }
