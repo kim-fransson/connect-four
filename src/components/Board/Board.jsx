@@ -113,8 +113,8 @@ const Column = ({
       onKeyDown={handleKeyDown}
     >
       <>
-        {isActive && !isDisabled && isMouse && (
-          <div className="board__marker">
+        <div className="board__marker">
+          {isActive && !isDisabled && isMouse && (
             <motion.div
               animate={{ scale: [1, 1.1] }}
               transition={{
@@ -128,21 +128,22 @@ const Column = ({
             >
               <Marker color={currentPlayer} />
             </motion.div>
-            <motion.div
-              style={{
-                opacity: 0,
-                position: "absolute",
-                transform: "translate(-50%, -50%)",
-                left: "50%",
-                top: "50%",
-              }}
-              key={`counter-${colIndex}${rowIndex}`}
-              layoutId={`counter-${colIndex}${rowIndex}`}
-            >
-              <Counter color={currentPlayer} />
-            </motion.div>
-          </div>
-        )}
+          )}
+        </div>
+        <motion.div
+          style={{
+            opacity: 0,
+            position: "absolute",
+            left: "50%",
+            top: "0",
+            translate: "-50% -100%",
+            pointerEvents: "none",
+          }}
+          key={`counter-${colIndex}${rowIndex}`}
+          layoutId={`counter-${colIndex}${rowIndex}`}
+        >
+          <Counter color={currentPlayer} />
+        </motion.div>
         {items.map((counter, rowIndex) =>
           counter ? (
             <motion.div
