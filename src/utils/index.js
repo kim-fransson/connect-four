@@ -158,6 +158,12 @@ export const checkGameOver = (board, placement, color) => {
 
 export const hasColumnSpace = (board, col) => board[col][0] === null;
 
+export const getAvailableRowIndex = (col) => {
+  const firstFilled = col.findIndex((cell) => cell !== null);
+  const index = firstFilled === -1 ? col.length - 1 : firstFilled - 1;
+  return index;
+};
+
 export const getAvailableColumns = (board) => {
   const available = [];
 
@@ -174,8 +180,7 @@ export const getAvailableColumns = (board) => {
 export const dropCounter = (board, column, color) => {
   const tmpBoard = [...board];
   const targetCol = [...tmpBoard[column]];
-  const firstFilled = targetCol.findIndex((cell) => cell !== null);
-  const index = firstFilled === -1 ? targetCol.length - 1 : firstFilled - 1;
+  const index = getAvailableRowIndex(targetCol);
 
   targetCol[index] = { color };
   tmpBoard[column] = targetCol;

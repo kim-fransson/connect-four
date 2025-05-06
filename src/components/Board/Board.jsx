@@ -11,10 +11,10 @@ import { Marker } from "./Marker/Marker";
 import { motion } from "motion/react";
 
 import "./Board.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { useMedia } from "react-use";
-import { hasColumnSpace } from "../../utils";
+import { getAvailableRowIndex, hasColumnSpace } from "../../utils";
 
 export const Board = ({ board, onColumnClick, currentPlayer, isDisabled }) => {
   const [activeColumn, setActiveColumn] = useState(null);
@@ -69,6 +69,13 @@ const Column = ({
   isDisabled,
 }) => {
   const isMouse = useMedia("(pointer: fine)");
+  const rowIndex = getAvailableRowIndex(items);
+
+  useEffect(() => {
+    console.log({
+      rowIndex,
+    });
+  }, [rowIndex]);
 
   const { pressProps } = usePress({
     onPress,
@@ -107,28 +114,43 @@ const Column = ({
     >
       <>
         {isActive && !isDisabled && isMouse && (
-          <motion.div
-            className="board__marker"
-            animate={{ scale: [1, 1.1] }}
-            transition={{
-              scale: {
-                repeat: Infinity,
-                repeatType: "reverse",
-                duration: 0.5,
-              },
-            }}
-            layoutId={`marker`}
-          >
-            <Marker color={currentPlayer} />
-          </motion.div>
+          <div className="board__marker">
+            <motion.div
+              animate={{ scale: [1, 1.1] }}
+              transition={{
+                scale: {
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  duration: 0.5,
+                },
+              }}
+              layoutId={`marker`}
+            >
+              <Marker color={currentPlayer} />
+            </motion.div>
+            <motion.div
+              style={{
+                opacity: 0,
+                position: "absolute",
+                transform: "translate(-50%, -50%)",
+                left: "50%",
+                top: "50%",
+              }}
+              key={`counter-${colIndex}${rowIndex}`}
+              layoutId={`counter-${colIndex}${rowIndex}`}
+            >
+              <Counter color={currentPlayer} />
+            </motion.div>
+          </div>
         )}
         {items.map((counter, rowIndex) =>
           counter ? (
-            <Counter
-              key={`placeholder-${colIndex}${rowIndex}`}
-              color={counter.color}
-              highlight={counter.highlight}
-            />
+            <motion.div
+              key={`counter-${colIndex}${rowIndex}`}
+              layoutId={`counter-${colIndex}${rowIndex}`}
+            >
+              <Counter color={counter.color} highlight={counter.highlight} />
+            </motion.div>
           ) : (
             <div key={`placeholder-${colIndex}${rowIndex}`}></div>
           )
