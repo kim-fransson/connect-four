@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { InGame as InGameTemplate } from "../../templates";
 import { checkGameOver, dropCounter, getAvailableColumns } from "../../utils";
+import { useEffect } from "react";
 
 const GameState = {
   Idle: "IDLE",
@@ -109,9 +110,17 @@ const useConnectFourStore = create((set) => ({
     set(() => ({
       ...initialState,
     })),
+  setPlayingAgainstCPU: (playingAgainstCPU) => {
+    set((state) => ({
+      playerYellow: {
+        ...state.playerYellow,
+        isCpu: playingAgainstCPU,
+      },
+    }));
+  },
 }));
 
-export const InGame = ({ onQuitGame }) => {
+export const InGame = ({ onQuitGame, playingAgainstCPU }) => {
   const board = useConnectFourStore((state) => state.board);
   const playerRed = useConnectFourStore((state) => state.playerRed);
   const playerYellow = useConnectFourStore((state) => state.playerYellow);
@@ -129,6 +138,13 @@ export const InGame = ({ onQuitGame }) => {
   const continueGame = useConnectFourStore((state) => state.continueGame);
   const restartGame = useConnectFourStore((state) => state.restartGame);
   const quiteGame = useConnectFourStore((state) => state.quitGame);
+  const setPlayingAgainstCPU = useConnectFourStore(
+    (state) => state.setPlayingAgainstCPU
+  );
+
+  useEffect(() => {
+    setPlayingAgainstCPU(playingAgainstCPU);
+  }, [playingAgainstCPU, setPlayingAgainstCPU]);
 
   const handleColumnClick = (column) => {
     const { board: updatedBoard, placement } = dropCounter(

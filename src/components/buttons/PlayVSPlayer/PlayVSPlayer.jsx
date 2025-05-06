@@ -3,7 +3,12 @@ import icon from "../../../assets/images/player-vs-player.svg";
 
 export const PlayVSPlayer = ({ onPress }) => {
   return (
-    <BaseButton variant="primary" color="yellow" onPress={onPress}>
+    <BaseButton
+      textAlign="left"
+      variant="primary"
+      color="yellow"
+      onPress={onPress}
+    >
       play vs player
       <img src={icon} alt="" />
     </BaseButton>

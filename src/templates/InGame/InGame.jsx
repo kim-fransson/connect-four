@@ -11,12 +11,6 @@ import logo from "../../assets/images/logo.svg";
 
 import "./InGame.css";
 import { useMedia } from "react-use";
-import { AnimatePresence } from "motion/react";
-
-const playerToLabels = {
-  red: "player 1",
-  yellow: "player 2",
-};
 
 const playerAnimations = (
   isGameActive,
@@ -61,7 +55,12 @@ export const InGame = ({
   isTimerPaused,
 }) => {
   const { score: redScore } = playerRed;
-  const { score: yellowScore } = playerYellow;
+  const { score: yellowScore, isCpu } = playerYellow;
+
+  const playerToLabels = {
+    red: isCpu ? "you" : "player 1",
+    yellow: isCpu ? "cpu" : "player 2",
+  };
 
   const isMouse = useMedia("(pointer: fine)");
 
@@ -108,14 +107,14 @@ export const InGame = ({
         </header>
         <ScoreCard
           color="red"
-          label="player 1"
+          label={playerToLabels["red"]}
           score={redScore}
           animation={redAnimation}
           className="in-game__score-card-red"
         />
         <ScoreCard
           color="yellow"
-          label="player 2"
+          label={playerToLabels["yellow"]}
           score={yellowScore}
           animation={yellowAnimation}
           className="in-game__score-card-yellow"
@@ -139,7 +138,7 @@ export const InGame = ({
           ) : isGameOver ? (
             <GameCard
               label={playerToLabels[winner]}
-              text={winner ? "wins" : "draw"}
+              text={winner ? (isCpu ? "win" : "wins") : "draw"}
               buttonLabel="play again"
               className="in-game__game-card"
               onButtonPress={onPlayAgain}
