@@ -13,19 +13,11 @@ function App() {
     setPlayingAgainstCPU(false);
   };
 
-  const handlePlayerVsCPU = () => {
-    setShowMenu(false);
-    setPlayingAgainstCPU(true);
-  };
-
   return (
     <>
       <h1 className="sr-only">Connect four</h1>
       {showMenu ? (
-        <MainMenu
-          onPlayerVsPlayer={handlePlayerVsPlayer}
-          onPlayerVsCPU={handlePlayerVsCPU}
-        />
+        <MainMenu onPlayerVsPlayer={handlePlayerVsPlayer} />
       ) : (
         <InGame
           onQuitGame={() => setShowMenu(true)}
